@@ -20,11 +20,11 @@ class Settings;
 
 class SimTreeEngine
 {
-    
+
 private:
     Settings* _settings;
     MbRandom* _random;
-    
+
     int _numberOfSims;
     int _BADMAX;
     int _mintaxa;

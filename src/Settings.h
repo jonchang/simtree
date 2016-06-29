@@ -29,6 +29,9 @@ public:
 
     void printCurrentSettings(std::ostream& out = std::cout) const;
 
+    // Parameters that settings knows about
+    ParameterMap _parameters;
+
 private:
 
     void readControlFile(const std::string& controlFilename);
@@ -67,8 +70,6 @@ private:
 
     static const size_t NumberOfParamsToPrefix = 10;
 
-    // Parameters that settings knows about
-    ParameterMap _parameters;
     
     // Parameters read from the control file
     std::vector<UserParameter> _userParameters;
