@@ -32,24 +32,25 @@ private:
     int _minNumberOfShifts;
     int _maxNumberOfShifts;
     double _minTreeAge;
-    
+
     std::string _treefile;
     std::string _eventfile;
-    
+
     std::vector<SimTree*> _simtrees;
 
-    
+
 public:
     SimTreeEngine(Settings* settings, MbRandom* random);
     SimTreeEngine(const SimTreeEngine&) = delete;
     SimTreeEngine& operator=(const SimTreeEngine&) = delete;
     ~SimTreeEngine();
-    
+
     SimTree* getTreeInstance(void);
     bool isTreeValid(SimTree* x);
 
     void writeTrees();
     void writeEventData();
+    std::vector<std::string> getNewickTrees();
 
 
 };

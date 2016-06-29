@@ -134,6 +134,18 @@ void SimTreeEngine::writeTrees()
     
 }
 
+std::vector<std::string> SimTreeEngine::getNewickTrees()
+{
+    std::vector<std::string> trees;
+    for (int i = 0; i < (int)_simtrees.size(); i++) {
+        std::stringstream tmpstream;
+        _simtrees[i]->writeTree(_simtrees[i]->getRoot(), tmpstream);
+        tmpstream << ";";
+        trees.push_back(tmpstream.str());
+    }
+    return trees;
+}
+
 
 void SimTreeEngine::writeEventData()
 {
