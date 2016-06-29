@@ -57,8 +57,8 @@ SimTreeEngine::SimTreeEngine(Settings* settings, MbRandom* random) :
     
     // Data output
     
-    writeTrees();
-    writeEventData();
+    //writeTrees();
+    //writeEventData();
 }
 
 
