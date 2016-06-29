@@ -45,15 +45,22 @@ SimTreeEngine::SimTreeEngine(Settings* settings, MbRandom* random) :
     
     for (int i = 0; i < _numberOfSims; i++){
         auto tree = getTreeInstance();
-        // if tree is null do something
-         _simtrees.push_back(tree);
+        if (tree) {
+             _simtrees.push_back(tree);
+        } else {
+            if (i == 0) {
+                // fail fast on the first tree so people don't wait
+                // to find out their tree failed
+                return;
+            }
+        }
  
-        //_simtrees[i]->recursiveCheckTime();
-        //_simtrees[i]->checkBranchLengths();
+        // _simtrees[i]->recursiveCheckTime();
+        // _simtrees[i]->checkBranchLengths();
         
-        std::cout << "tree " << i << " has << ";
-        std::cout << _simtrees[i]->getNumberOfTips() << " >> tips";
-        std::cout << "\tshifts: " << _simtrees[i]->getNumberOfShifts() << std::endl;
+        // std::cout << "tree " << i << " has << ";
+        // std::cout << _simtrees[i]->getNumberOfTips() << " >> tips";
+        // std::cout << "\tshifts: " << _simtrees[i]->getNumberOfShifts() << std::endl;
         
     }
     
@@ -84,10 +91,7 @@ SimTree* SimTreeEngine::getTreeInstance()
             badctr++;
         }
         if (badctr > _BADMAX){
-            std::cout << "cannot simulate valid tree with params" << std::endl;
-            std::cout << "MAXBAD exceeded" << std::endl;
-            exit(0);
-        
+            return nullptr;
         }
     }
     std::cout << "Should not get here, terminating" << std::endl;
@@ -165,12 +169,19 @@ void SimTreeEngine::writeEventData()
     
         tmpstream.close();
     }
-    
-    
-    
-    
 }
 
+std::string SimTreeEngine::getEventData()
+{
+    std::ostringstream outStream;
+    // Write header:
+    outStream << "sim,leftchild,rightchild,abstime,lambdainit,lambdashift,muinit\n";
+
+    for (int i = 0; i < (int)_simtrees.size(); i++){
+        _simtrees[i]->getEventDataString(i+1, outStream);
+    }
+    return outStream.str();
+}
 
 
 

@@ -51,6 +51,7 @@ public:
     void writeTrees();
     void writeEventData();
     std::vector<std::string> getNewickTrees();
+    std::string getEventData();
 
 
 };
