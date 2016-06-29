@@ -44,7 +44,9 @@ SimTreeEngine::SimTreeEngine(Settings* settings, MbRandom* random) :
 
     
     for (int i = 0; i < _numberOfSims; i++){
-         _simtrees.push_back(getTreeInstance());
+        auto tree = getTreeInstance();
+        // if tree is null do something
+         _simtrees.push_back(tree);
  
         //_simtrees[i]->recursiveCheckTime();
         //_simtrees[i]->checkBranchLengths();
