@@ -14,7 +14,7 @@
 #include <vector>
 #include <sstream>
 
-class Node;
+class SimNode;
 class BranchEvent;
 class MbRandom;
 class Settings;
@@ -26,11 +26,11 @@ private:
     MbRandom* _random;
     Settings* _settings;
     
-    Node* _root;
+    SimNode* _root;
     BranchEvent* _rootEvent;
     
     std::vector<BranchEvent*> _eventSet; // holds all non-root events
-    std::vector<Node*> _nodes;
+    std::vector<SimNode*> _nodes;
     
     double  _maxTime;
 
@@ -59,13 +59,13 @@ public:
     SimTree& operator=(const SimTree&) = delete;
     ~SimTree();
 
-    void simulateStep(Node* p, std::string direction);
+    void simulateStep(SimNode* p, std::string direction);
 
     int getEventType(double a, double b, double c);
     
-    void writeTree(Node* p, std::ostream& ss);
+    void writeTree(SimNode* p, std::ostream& ss);
     void setTipNames(void);
-    Node* getRoot();
+    SimNode* getRoot();
     void printTipLambda();
     
     void getEventDataString(int index, std::ostream& ss);
@@ -75,7 +75,7 @@ public:
     int getNumberOfShifts();
     
     void recursiveCheckTime();
-    void recursiveSetTime(Node * x);
+    void recursiveSetTime(SimNode * x);
     void checkBranchLengths();
     
     double getTreeAge();
@@ -83,7 +83,7 @@ public:
 };
 
 
-inline Node* SimTree::getRoot()
+inline SimNode* SimTree::getRoot()
 {
     return _root;
 }

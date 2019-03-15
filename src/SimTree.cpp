@@ -13,19 +13,17 @@
 #include "SimTree.h"
 #include "BranchEvent.h"
 #include "MbRandom.h"
-#include "Node.h"
+#include "SimNode.h"
 #include "Settings.h"
 
 
 #define SAMPLE_EXPONENTIAL
 
 
-
-
 SimTree::SimTree(MbRandom* random, Settings* settings) :
     _random{random},
     _settings{settings},
-    _root{new Node},
+    _root{new SimNode},
     _rootEvent{nullptr},
     _eventSet{},
     _nodes{},
@@ -158,7 +156,7 @@ SimTree::~SimTree()
 
 // Recursive simulation engine
 
-void SimTree::simulateStep(Node* p, std::string direction)
+void SimTree::simulateStep(SimNode* p, std::string direction)
 {
     
     if ((int)_nodes.size() > _maxNumberOfNodes){
@@ -212,7 +210,7 @@ void SimTree::simulateStep(Node* p, std::string direction)
                                
                 notDone = false;
                 
-                Node* progeny = new Node(p, curTime, curEvent);
+                SimNode* progeny = new SimNode(p, curTime, curEvent);
                 _nodes.push_back(progeny);
                 
                 progeny->setBrlen((curTime - p->getTime()));
@@ -290,7 +288,7 @@ void SimTree::simulateStep(Node* p, std::string direction)
             
             curTime = _maxTime;
             notDone = false;
-            Node* progeny = new Node(p, curTime, curEvent);
+            SimNode* progeny = new SimNode(p, curTime, curEvent);
             _nodes.push_back(progeny);
             
             if (direction == "right"){
@@ -369,7 +367,7 @@ void SimTree::setTipNames()
 }
 
 
-void SimTree::writeTree(Node* p, std::ostream& ss)
+void SimTree::writeTree(SimNode* p, std::ostream& ss)
 {
     if (p->getLfDesc() == NULL && p-> getRtDesc() == NULL) {
         ss << p->getName() << ":" << p->getBrlen();
@@ -451,7 +449,7 @@ void SimTree::recursiveCheckTime()
 
 
 
-void SimTree::recursiveSetTime(Node * x)
+void SimTree::recursiveSetTime(SimNode * x)
 {
     if (x == getRoot()){
         x->setTmp(0.0);

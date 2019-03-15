@@ -13,12 +13,12 @@
 
 class BranchEvent;
 
-class Node
+class SimNode
 {
 private:
-    Node*   _lfDesc;
-    Node*   _rtDesc;
-    Node*   _anc;
+    SimNode*   _lfDesc;
+    SimNode*   _rtDesc;
+    SimNode*   _anc;
     double  _time;
     double  _brlen;
     double  _tmp;
@@ -31,19 +31,19 @@ private:
     std::string _name;
 
 public:
-    Node();
-    Node(const Node&) = delete;
-    Node& operator=(const Node&) = delete;
-    Node(Node* anc, double time, BranchEvent* be);
+    SimNode();
+    SimNode(const SimNode&) = delete;
+    SimNode& operator=(const SimNode&) = delete;
+    SimNode(SimNode* anc, double time, BranchEvent* be);
     
-    void    setAnc(Node * x);
-    Node*   getAnc();
+    void    setAnc(SimNode * x);
+    SimNode*   getAnc();
     
-    void    setLfDesc(Node* x);
-    Node*   getLfDesc();
+    void    setLfDesc(SimNode* x);
+    SimNode*   getLfDesc();
 
-    void    setRtDesc(Node* x);
-    Node*   getRtDesc();
+    void    setRtDesc(SimNode* x);
+    SimNode*   getRtDesc();
 
     void    setTime(double x);
     double  getTime();
@@ -66,110 +66,110 @@ public:
     void    setName(std::string x);
     std::string getName();
     
-    std::string getRandomTipRight(Node* x);
-    std::string getRandomTipLeft(Node* x);
+    std::string getRandomTipRight(SimNode* x);
+    std::string getRandomTipLeft(SimNode* x);
 
 
 };
 
-inline void Node::setTmp(double x)
+inline void SimNode::setTmp(double x)
 {
     _tmp = x;
 }
 
-inline double Node::getTmp()
+inline double SimNode::getTmp()
 {
     return _tmp;
 }
 
 
-inline void Node::setAnc(Node* x)
+inline void SimNode::setAnc(SimNode* x)
 {
     _anc = x;
 }
 
-inline Node* Node::getAnc()
+inline SimNode* SimNode::getAnc()
 {
     return _anc;
 }
 
-inline void Node::setLfDesc(Node* x)
+inline void SimNode::setLfDesc(SimNode* x)
 {
     _lfDesc = x;
 }
 
-inline void Node::setRtDesc(Node* x)
+inline void SimNode::setRtDesc(SimNode* x)
 {
     _rtDesc = x;
 }
 
-inline Node* Node::getLfDesc()
+inline SimNode* SimNode::getLfDesc()
 {
     return _lfDesc;
 }
 
-inline Node* Node::getRtDesc()
+inline SimNode* SimNode::getRtDesc()
 {
     return _rtDesc;
 }
 
-inline double Node::getTime()
+inline double SimNode::getTime()
 {
     return _time;
 }
 
-inline void Node::setTime(double x)
+inline void SimNode::setTime(double x)
 {
     _time = x;
 }
 
-inline double Node::getBrlen()
+inline double SimNode::getBrlen()
 {
     return _brlen;
 }
 
-inline void Node::setBrlen(double x)
+inline void SimNode::setBrlen(double x)
 {
     _brlen = x;
 }
 
-inline bool Node::getIsExtant()
+inline bool SimNode::getIsExtant()
 {
     return _isExtant;
 }
 
-inline void Node::setIsExtant(bool x)
+inline void SimNode::setIsExtant(bool x)
 {
     _isExtant = x;
 }
 
 
-inline bool Node::getIsTip()
+inline bool SimNode::getIsTip()
 {
     return _isTip;
 }
 
-inline void Node::setIsTip(bool x)
+inline void SimNode::setIsTip(bool x)
 {
     _isTip = x;
 }
 
-inline BranchEvent* Node::getNodeEvent()
+inline BranchEvent* SimNode::getNodeEvent()
 {
     return _nodeEvent;
 }
 
-inline void Node::setNodeEvent(BranchEvent* x)
+inline void SimNode::setNodeEvent(BranchEvent* x)
 {
     _nodeEvent = x;
 }
 
-inline void Node::setName(std::string x)
+inline void SimNode::setName(std::string x)
 {
     _name = x;
 }
 
-inline std::string Node::getName()
+inline std::string SimNode::getName()
 {
     return _name;
 }

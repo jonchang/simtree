@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Dan Rabosky. All rights reserved.
 //
 
-#include "Node.h"
+#include "SimNode.h"
 
 
-Node::Node()
+SimNode::SimNode()
   : _lfDesc{nullptr},
     _rtDesc{nullptr},
     _anc{nullptr},
@@ -24,7 +24,7 @@ Node::Node()
 }
 
 
-Node::Node(Node* anc, double time, BranchEvent* be)
+SimNode::SimNode(SimNode* anc, double time, BranchEvent* be)
   : _lfDesc{nullptr},
     _rtDesc{nullptr},
     _anc{anc},
@@ -40,7 +40,7 @@ Node::Node(Node* anc, double time, BranchEvent* be)
 }
 
 
-std::string Node::getRandomTipRight(Node* x){
+std::string SimNode::getRandomTipRight(SimNode* x){
     
  
     std::string name;
@@ -52,7 +52,7 @@ std::string Node::getRandomTipRight(Node* x){
      return name;
 }
 
-std::string Node::getRandomTipLeft(Node* x){
+std::string SimNode::getRandomTipLeft(SimNode* x){
     
      
     std::string name;

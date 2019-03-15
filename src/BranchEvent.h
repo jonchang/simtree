@@ -13,14 +13,14 @@
 #include <set>
 
 
-class Node;
+class SimNode;
 
 class BranchEvent
 {
     
 private:
     
-    Node*   _eventNode;
+    SimNode*   _eventNode;
     double  _eventTime;
     double  _lambdaInit;
     double  _lambdaShift;
@@ -29,10 +29,10 @@ private:
 public:
     
     BranchEvent();
-    BranchEvent(Node* node, double time, double lambdaInit, double lambdaShift, double muInit);
+    BranchEvent(SimNode* node, double time, double lambdaInit, double lambdaShift, double muInit);
     
-    Node* getEventNode();
-    void setEventNode(Node* x);
+    SimNode* getEventNode();
+    void setEventNode(SimNode* x);
 
     double getEventTime();
     void setEventTime(double x);
@@ -49,12 +49,12 @@ public:
 
 };
 
-inline Node* BranchEvent::getEventNode()
+inline SimNode* BranchEvent::getEventNode()
 {
     return _eventNode;
 }
 
-inline void BranchEvent::setEventNode(Node* x)
+inline void BranchEvent::setEventNode(SimNode* x)
 {
     _eventNode = x;
 }

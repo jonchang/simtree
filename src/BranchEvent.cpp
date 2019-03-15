@@ -7,7 +7,7 @@
 //
 
 #include "BranchEvent.h"
-#include "Node.h"
+#include "SimNode.h"
 
 
 BranchEvent::BranchEvent()
@@ -20,7 +20,7 @@ BranchEvent::BranchEvent()
 
 }
 
-BranchEvent::BranchEvent(Node* node, double time, double lambdaInit,
+BranchEvent::BranchEvent(SimNode* node, double time, double lambdaInit,
                             double lambdaShift, double muInit)
   : _eventNode{node},
     _eventTime{time},
