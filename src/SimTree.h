@@ -13,11 +13,11 @@
 #include <set>
 #include <vector>
 #include <sstream>
+#include "Settings.h"
 
 class SimNode;
 class BranchEvent;
 class MbRandom;
-class Settings;
 
 class SimTree
 {

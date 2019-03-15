@@ -50,18 +50,18 @@ SimTree::SimTree(MbRandom* random, Settings* settings) :
     // Rate distribution parameters
     
     
-    _epsmin  = _settings->get<double>("epsmin");
-    _epsmax = _settings->get<double>("epsmax");
+    _epsmin  = _settings->epsmin;
+    _epsmax = _settings->epsmax;
     
-    _rmin = _settings->get<double>("rmin");
-    _rmax = _settings->get<double>("rmax");
+    _rmin = _settings->rmin;
+    _rmax = _settings->rmax;
     
-    double lambdaInit = _settings->get<double>("lambdaInit0");
-    double lambdaShift = _settings->get<double>("lambdaShift0");
-    double muInit = _settings->get<double>("muInit0");
+    double lambdaInit = _settings->lambdaInit0;
+    double lambdaShift = _settings->lambdaShift0;
+    double muInit = _settings->muInit0;
     
-    _lambda_mean = _settings->get<double>("lambdaExpMean");
-    _mu_mean = _settings->get<double>("muExpMean");
+    _lambda_mean = _settings->lambdaExpMean;
+    _mu_mean = _settings->muExpMean;
 
 #ifdef SAMPLE_EXPONENTIAL
     
@@ -77,7 +77,7 @@ SimTree::SimTree(MbRandom* random, Settings* settings) :
     if (lambdaInit <= 0){
         double eps = _random->uniformRv(_epsmin, _epsmax);
         double r = 0.0;
-        if (_settings->get<bool>("rInitLogscale")){
+        if (_settings->rInitLogscale){
             double tmp = _random->uniformRv(std::log(_rmin), std::log(_rmax));
             r = std::exp(tmp);
         }else{
@@ -112,10 +112,10 @@ SimTree::SimTree(MbRandom* random, Settings* settings) :
 
     _nodes.push_back(_root);
     
-    _maxTime = _settings->get<double>("maxTime");
-    _maxNumberOfNodes = _settings->get<double>("maxNumberOfNodes");
-    _maxTimeForEvent = _settings->get<double>("maxTimeForEvent");
-    _inc = _settings->get<double>("inc");
+    _maxTime = _settings->maxTime;
+    _maxNumberOfNodes = _settings->maxNumberOfNodes;
+    _maxTimeForEvent = _settings->maxTimeForEvent;
+    _inc = _settings->inc;
     
     
     simulateStep(_root, "right");
@@ -166,7 +166,7 @@ void SimTree::simulateStep(SimNode* p, std::string direction)
     
     double curTime = p->getTime();
     double dt = 0;
-    double eventRate = _settings->get<double>("eventRate");
+    double eventRate = _settings->eventRate;
     
     BranchEvent* curEvent = p->getNodeEvent();
     double eventtime = curEvent->getEventTime();

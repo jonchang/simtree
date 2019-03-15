@@ -13,10 +13,10 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
+#include "Settings.h"
 
 class SimTree;
 class MbRandom;
-class Settings;
 
 class SimTreeEngine
 {

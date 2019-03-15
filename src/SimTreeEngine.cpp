@@ -30,17 +30,17 @@ SimTreeEngine::SimTreeEngine(Settings* settings, MbRandom* random) :
     _simtrees{}
 
 {
-    _numberOfSims = _settings->get<int>("numberOfSims");
-    _treefile = _settings->get<std::string>("treefile");
-    _eventfile = _settings->get<std::string>("eventfile");
+    _numberOfSims = _settings->numberOfSims;
+    _treefile = _settings->treefile;
+    _eventfile = _settings->eventfile;
     
     _BADMAX = 2000;
     
-    _mintaxa = _settings->get<int>("mintaxa");
-    _maxtaxa = _settings->get<int>("maxtaxa");
-    _minNumberOfShifts = _settings->get<int>("minNumberOfShifts");
-    _maxNumberOfShifts = _settings->get<int>("maxNumberOfShifts");
-    _minTreeAge = _settings->get<double>("minTime");
+    _mintaxa = _settings->mintaxa;
+    _maxtaxa = _settings->maxtaxa;
+    _minNumberOfShifts = _settings->minNumberOfShifts;
+    _maxNumberOfShifts = _settings->maxNumberOfShifts;
+    _minTreeAge = _settings->minTime;
 
     
     for (int i = 0; i < _numberOfSims; i++){
